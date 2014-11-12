@@ -1,0 +1,27 @@
+public class SuperArray{
+    int[] array;
+    int x;
+    public SuperArray(int n){
+	int[] newArray;
+	newArray= new int[n];}
+    public String toString(int[] ar){
+	int lt=ar.length;
+        int a=0;	
+	String s="";
+    while(a<lt){
+	s+=""+ar[a]+" ,";
+	a++;}
+    return s;}
+    public void append(Object e){
+	int[] objectArray;
+	objectArray=new int[array.length];
+	a=0;
+
+	while(a<array.length){
+	    a++;
+
+
+}}
+
+
+
