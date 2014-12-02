@@ -67,20 +67,19 @@ public class SuperArray{
 }
      else{return "Index is out of range";}}
 
-    public String remove(int index){
- 	if(index>-1&&index<array.length){
-	    array[index]=null;	    
-	    return "Successfully removed";
-	    }
+    public Object remove(int index){
+	if(index>-1&&index<array.length){
+	    array[index]="n";	   
+	    return array[index];
+	}
 	else{return "Index is out of range";}}
 
-   public static void main(String[] args){
+    public static void main(String[] args){
 	Integer x=new Integer(5);
 	SuperArray L= new SuperArray();
 	L.add(x);
 	L.add(new Integer(99));}
 }
-
 
 
 
