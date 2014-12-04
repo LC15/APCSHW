@@ -6,6 +6,7 @@ public class Crossword{
     char[][] puzzle;
     char [][] ans;
     String wordkey;
+   
     public void SetSize(){
 	System.out.println("How many rows would you like in this puzzle?");
 	Scanner row=new Scanner(System.in);
@@ -13,7 +14,8 @@ public class Crossword{
 	System.out.println("How many columns would you like in this puzzle?");
 	Scanner column=new Scanner (System.in);
 	cols=Integer.valueOf(column.nextLine());
-	puzzle= new char[rows][cols];}
+	puzzle= new char[rows][cols];
+	ans=new char[rows][cols];}
     public void SetAll(){
 	for(int i=0;i<rows;i++){
 	    for(int n=0;n<cols;n++){
@@ -88,6 +90,20 @@ public class Crossword{
 		}
 
 	    }
+    public void loadWordsFromFile(String filename ,boolean fillRandomLetters){}
+    public void fillItUp(){
+	for(int i=0;i<rows;i++){
+	    for(int c=0;c<puzzle[rows].length;c++){puzzle[i][c]=ans[i][c];} }
+	for(int f=0;f<rows;f++){
+	    for(int fc=0;fc<puzzle[rows].length;fc++){
+		if(puzzle[f][fc]=='_'){
+		    Random letter=new Random();
+		    int le=letter.nextInt(27);
+		    puzzle[f][fc]="abcdefghijklmnopqrstuvwxyz".charAt(le);
+		}}}}
+    public static void main(String[] args){}
+
+
 }
 
  
