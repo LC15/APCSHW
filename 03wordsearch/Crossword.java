@@ -1,5 +1,4 @@
-import java.util.Scanner;
-import java.util.Random;
+import java.util.*;
 public class Crossword{
     Integer rows;
     Integer cols;
@@ -16,81 +15,41 @@ public class Crossword{
 	cols=Integer.valueOf(column.nextLine());
 	puzzle= new char[rows][cols];
 	ans=new char[rows][cols];}
+
     public void SetAll(){
 	for(int i=0;i<rows;i++){
 	    for(int n=0;n<cols;n++){
 		puzzle[i][n]='_';}}}
-    public void Horizon(String word){
-	if (word.length() <cols+1){
-	    Random r=new Random();
-	    r.nextInt(2);
-	    Random chooseRow=new Random();
-	    int chosenR=chooseRow.nextInt(rows+1);
-	    if (r.equals(0)){
-		for(int index=0;index<word.length();index++){
-		    if (puzzle[chosenR][index]==word.charAt(index)||puzzle[chosenR][index]=='_'){
-		    puzzle[chosenR][index]=word.charAt(index);}
-		    else{
-			for(index--;index>-1;index--){
-			    puzzle[chosenR][index]='_';}
-			break;}
-		}}
-	  
-	    else{
-		int diff=puzzle[chosenR].length-word.length();
-		for(int i=0;i<word.length();i++){ 
-		    if( puzzle[chosenR][puzzle[chosenR].length-diff-i]==word.charAt(i)|| puzzle[chosenR][puzzle[chosenR].length-diff-i]=='_'){		  
-			puzzle[chosenR][puzzle[chosenR].length-diff-i]=word.charAt(i);}
-		    else{
-			for (i--;i>-1;i--){
-			    puzzle[chosenR][puzzle[chosenR].length-diff-i]='_';}
-		}
-		}}}}
-	    //how to start over if a space is taken by a character
-		
-    
-    
-	    public void Vert(String word){	
-		if (word.length() <rows+1){
-		    Random r=new Random();
-		    r.nextInt(2);
- 		    Random chooseCol=new Random();
-		    int chosenC=chooseCol.nextInt(cols+1);
-		     if (r.equals(0)){
-			 for(int index=0;index<word.length();index++){
-			     if(puzzle[index][chosenC]==word.charAt(index)||puzzle[index][chosenC]=='_'){ 			   
-				 puzzle[index][chosenC]=word.charAt(index);}
-			 }}
-				
-		     else{
-			 int diff=puzzle[rows].length-word.length();
-			 for(int index=0;index<word.length();index++){
-			    if(puzzle[rows-index][chosenC]==word.charAt(index)||puzzle[rows-index][chosenC]=='_'){			   
-			    puzzle[rows-index][chosenC]=word.charAt(index);}
-			    }
+    //for clearing the puzzle and setting everything to '_'
+   
+    public toString(word){
+	wordkey+="/n"+word}
+    //not sure how this would work tbh
 
-			}
-		}}
-	    public void diagonal(String word){
-		if(word.length()<rows+1){
-		    Random r=new Random();
-		    r.nextInt(2);
-		    Random startR=new Random();
-		   int sR= startR.nextInt(rows-word.length());
-		    Random startC=new Random();
-		    int sC=startC.nextInt(cols-word.length());
-		    if (r.equals(0)){		    
-			    for(int i=0;i<word.length();i++){
-				puzzle[sR+i][sC+i]=word.charAt(i);}}
-			else{
-			    int startBR=sR+rows-word.length();
-			    int startBC=sC+cols-word.length();
-			    for(int i=0;i<word.length();i++){
-				puzzle[startBR][startBC]=word.charAt(word.length()-1-i);}}
-		}
+    public boolean WorkPlease(String word,int rows, int cols, int dx, int dy){
+	if (dx<-1||dx>1||dy<-1||dy>1||(dx==0&&dy==0)){return  false;}
+	for(int i=0; i<word.length();i++){
+	    if((rows+i*dy<0||rows+i*dy>=puzzle.length)||(cols+i*dx<0||cols+i*dx>=puzzle[0].length)||puzzle[rows+i*dy][cols+i*dx]!='_'&&word.charAt(i)!=puzzle[rows+i*dy][cols+i*dx]){return false;}
+	}
+	return true;
+}
+    //check if word fits;erase instance var?
 
-	    }
-    public void loadWordsFromFile(String filename ,boolean fillRandomLetters){}
+    public boolean addW(String word,int rows, int cols, int dx, int dy){
+	if WorkPlease(word,rows,cols,dx,dy){toString(word);}	
+	for(int i=0; i<word.length(); i++){
+	    puzzle[row+i*dy][col+i*dx]=word.charAt(i);}
+    }
+    //adds word to actual puzzle and stringthing
+    public void setSeed(long seed){
+	rand.setSeed(seed);}
+    //setseed. 
+    public void wordIn(word){
+	addW(rand.nextInt(puzzle.length),rand.nextInt(puzzle[0].length),rand.nextInt(3)-1,rand.nextInt(3)-1); 
+	     }
+
+public void loadWordsFromFile(String filename ,boolean fillRandomLetters){}
+    
     public void fillItUp(){
 	for(int i=0;i<rows;i++){
 	    for(int c=0;c<puzzle[rows].length;c++){puzzle[i][c]=ans[i][c];} }
@@ -107,8 +66,6 @@ public class Crossword{
 }
 
  
-//have an add function and a function to check word size and a funcion to limit how many words are added to the puzzle. wordlist
-//first  make functions that add words diagonally etc, a function that uses the 3 functions to add words.. there should be an upper and lower limit for number of words
-//something to print the answers 
+ 
 
 
