@@ -1,29 +1,31 @@
 import java.util.*;
-public class Crossword{
+import java.io.FileNotFoundException;
+public class WordSearch{
     Integer rows;
     Integer cols;
     char[][] puzzle;
     char [][] ans;
     String wordkey;
+    Random rand=new Random();
    
-    public void SetSize(){
-	System.out.println("How many rows would you like in this puzzle?");
-	Scanner row=new Scanner(System.in);
-        rows=Integer.valueOf(row.nextLine());
-	System.out.println("How many columns would you like in this puzzle?");
-	Scanner column=new Scanner (System.in);
-	cols=Integer.valueOf(column.nextLine());
-	puzzle= new char[rows][cols];
-	ans=new char[rows][cols];}
+    public WordSearch(int rows, int cols, String file)throws FileNotFoundException{
+	puzzle=new char[rows][cols];
+	SetAll();  }
 
+
+    public WordSearch(int rows, int cols, String file, long randSeed, int answer) throws FileNotFoundException{
+	puzzle= new char [rows][cols];
+	rand.setSeed(randSeed);
+	SetAll();
+    }
     public void SetAll(){
 	for(int i=0;i<rows;i++){
 	    for(int n=0;n<cols;n++){
 		puzzle[i][n]='_';}}}
     //for clearing the puzzle and setting everything to '_'
    
-    public toString(word){
-	wordkey+="/n"+word}
+    public void toString(String word){
+	wordkey+="/n"+word;}
     //not sure how this would work tbh
 
     public boolean WorkPlease(String word,int rows, int cols, int dx, int dy){
@@ -33,20 +35,21 @@ public class Crossword{
 	}
 	return true;
 }
-    //check if word fits;erase instance var?
+    //check if word fits and if dx and dy are good;
 
     public boolean addW(String word,int rows, int cols, int dx, int dy){
-	if WorkPlease(word,rows,cols,dx,dy){toString(word);}	
+	if (WorkPlease(word,rows,cols,dx,dy)){
+	    toString(word);	
 	for(int i=0; i<word.length(); i++){
-	    puzzle[row+i*dy][col+i*dx]=word.charAt(i);}
+	    puzzle[rows+i*dy][cols+i*dx]=word.charAt(i);}
+	return true;}
+	else{return false;}
     }
     //adds word to actual puzzle and stringthing
     public void setSeed(long seed){
 	rand.setSeed(seed);}
     //setseed. 
-    public void wordIn(word){
-	addW(rand.nextInt(puzzle.length),rand.nextInt(puzzle[0].length),rand.nextInt(3)-1,rand.nextInt(3)-1); 
-	     }
+  
 
 public void loadWordsFromFile(String filename ,boolean fillRandomLetters){}
     
@@ -57,14 +60,11 @@ public void loadWordsFromFile(String filename ,boolean fillRandomLetters){}
 	    for(int fc=0;fc<puzzle[rows].length;fc++){
 		if(puzzle[f][fc]=='_'){
 		    Random letter=new Random();
-		    int le=letter.nextInt(27);
+		    letter.nextInt(27);
+		    int le=letter;
 		    puzzle[f][fc]="abcdefghijklmnopqrstuvwxyz".charAt(le);
 		}}}}
-    public static void main(String[] args){}
-
-
 }
-
  
  
 
