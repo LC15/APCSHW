@@ -25,8 +25,6 @@ public class Window extends JFrame implements ActionListener{
 	ToFarenheit= new JButton("Celsius to Farenheit!");
 	ToCelsius= new JButton("Farenheit to Celsius!");
 	
-
-
 	ToFarenheit.setActionCommand("convert");
 		ToFarenheit.addActionListener(this);
 	
@@ -45,6 +43,7 @@ public class Window extends JFrame implements ActionListener{
 		pane.add(text);
 		pane.add(buttons);
 		
+		
 	}
 
 	public void actionPerformed(ActionEvent a) throws NumberFormatException{
@@ -55,8 +54,12 @@ public class Window extends JFrame implements ActionListener{
 		Double x=Double.parseDouble(s);
 		String Converted=""+((x-32)*0.5555);
 		t.setText(Converted);}
+	    else{
+		Double x=Double.parseDouble(t.getText());
+		t.setText(""+((x+32)*1.8));}
+}
 	   
-	}
+
 
 
     
