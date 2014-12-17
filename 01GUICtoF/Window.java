@@ -3,7 +3,7 @@ import javax.swing.*;
 import java.awt.*; 
 public class Window extends JFrame implements ActionListener{
     private Container pane;
-    private JLabel title;
+    private JLabel lab;
     private JTextField t;
     private Container buttons;
     private Container text;
@@ -13,14 +13,15 @@ public class Window extends JFrame implements ActionListener{
     private JButton ToFarenheit;
    
     public Window(){
-	this.setTitle("Celsius to Farenheit");
+	this.setTitle("Celsius-Farenheit conversion");
 	this.setSize(600,400);
 	this.setLocation(100,100);
 	this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 
 	pane=this.getContentPane();
+	pane.setLayout(new GridLayout(2,1));
 
-	title= new JLabel("Convert Celsius to Farenheit!");
+	lab= new JLabel("Convert Celsius to Farenheit!", null, JLabel.CENTER);
 	t= new JTextField(8);
 	ToFarenheit= new JButton("Celsius to Farenheit!");
 	ToCelsius= new JButton("Farenheit to Celsius!");
@@ -37,11 +38,12 @@ public class Window extends JFrame implements ActionListener{
 
 		text = new Container();
 		text.setLayout(new FlowLayout());
-		text.add(title);
+		text.add(lab);
 		text.add(t);
-
+		pane.add(lab);
 		pane.add(text);
 		pane.add(buttons);
+		pane.add(t);
 		
 		
 	}
@@ -49,14 +51,16 @@ public class Window extends JFrame implements ActionListener{
 	public void actionPerformed(ActionEvent a) throws NumberFormatException{
 	    double d;
 	    String CF= a.getActionCommand();
-	    if(CF.equals("convert")){
+	    try{if(CF.equals("convert")){
 		String s= t.getText();
 		Double x=Double.parseDouble(s);
-		String Converted=""+((x-32)*0.5555);
+		String Converted=""+((x*1.8)+32);
 		t.setText(Converted);}
 	    else{
 		Double x=Double.parseDouble(t.getText());
-		t.setText(""+((x+32)*1.8));}
+		t.setText(""+((x-32)*0.5555));}
+	    }
+	    catch(NumberFormatException except){System.out.println("Enter A number please!");}
 }
 	   
 
