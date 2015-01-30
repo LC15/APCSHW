@@ -4,43 +4,45 @@ public class SuperArray{
     public SuperArray(){
 	array= new Object[10];}
     public SuperArray(int n){
-	
+       
 	array= new Object[n];}
-    public String toString(int[] ar){
-	int lt=ar.length;
-        int a=0;	
+    
+public String toString(){
+    	
 	String s="[ ";
-	while(a<lt){
-	    s+=""+ar[a]+" ";
-	    a++;}
-	return s+"]";}
-    public void add(Object e){
-	Object[] LongerArray;
-	LongerArray=new Object[array.length+1];
-	int a=0;
+	for(Object ob :array){
+	    s+=ob+",";}
+	return s+"]";
+}
+    
+public void add(Object e){
+    //	Object[] LongerArray;
+    resize(array.length+1);
+	array[array.length-1]=e;
+}
 
-	while(a<array.length){
-	    LongerArray[a]=array[a];
-	    a++;}
-	LongerArray[a+1]=e;}
-    public int Size(){
+
+   
+ public int Size(){
 	int s=0;
 	int a=0;	
 	while (array[a]!=null){
 	    a++;
 	    s++;}
 	return s;}
-    public void resize(int newCapacity){
+    
+public void resize(int newCapacity){
 	Object[] NewSArray;
 	NewSArray=new Object[newCapacity];
 	int a=0;
 
-	while(a<array.length){
+	while(a<newCapacity && a<array.length ){
 	    NewSArray[a]=array[a];
 	    a++;}
 	array=NewSArray;}
 	//will this even work?
-    public Object get(int index){
+   
+ public Object get(int index){
 	if(index>-1&&index<array.length){return array[index];}
 	else{System.out.println("ERROR:number entered is out of range");
 	    return null;}}
@@ -74,12 +76,14 @@ public class SuperArray{
 	    }
 	else{return "Index is out of range";}}
 
-   public static void main(String[] args){
-	Integer x=new Integer(5);
-	SuperArray L= new SuperArray();
-	L.add(x);
-	L.add(new Integer(99));}
+   
+	
+	
+
 }
+   
+  
+    
 
 
 
