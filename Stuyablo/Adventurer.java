@@ -43,7 +43,7 @@ public abstract class Adventurer{
 
     public int getDEX(){
 	return  DEX;}
-
+  
     public void setDEX(int x){
 	this.DEX=x;}
 
@@ -58,13 +58,19 @@ public abstract class Adventurer{
 
     public void setSTR(int strength){
 	this.STR=strength;}
+
+ public String getStats(){
+return this.getName() + "\nHP= " + this.getHP() + "\nSTR= " + this.getSTR() + "\nDEX= " + this.getDEX() + "\nINT= " + this.getINT();
+ }
+    
     
     
    
     public void attack(Adventurer other){
-	System.out.println("You messed up abstract attack");}
-
+	Random hit=new Random();
+	if(this.getHP() >0){other.setHP(other.getHP()-hit.nextInt(10));}
+    }
  public void specialAttack(Adventurer other){
      System.out.println("You messed up abstract special attack");
-	}
+ }
 }

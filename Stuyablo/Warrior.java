@@ -3,10 +3,9 @@ public class Warrior extends Adventurer{
     private int bonusHealth;
     private int Rage;
     
-public Warrior(){
-    super("Ted");
-    
-}
+ public Warrior(){
+	this("Ted", 20,25);
+    }
     public Warrior(String n,int rag, int strength){
 	this.setName(n);
 	this.setSTR(strength);
@@ -14,6 +13,7 @@ public Warrior(){
     }
     public Warrior(String n){
 	this(n,20,25);}
+   
     public int getRage(){
 	return Rage;}
     public void setRage(int rag){
